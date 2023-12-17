@@ -1,0 +1,14 @@
+version: '2.0'
+services:
+  frontend:
+    container_name: dgac
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      # https://cloud.google.com/run/docs/testing/local
+      - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/application_default_credentials.json
+      - PROJECT_ID=${PROJECT_ID}
+    volumes:
+      # https://cloud.google.com/run/docs/testing/local
+      - ~/.config/gcloud/application_default_credentials.json:/tmp/keys/application_default_credentials.json
